@@ -1,7 +1,7 @@
-﻿@{
+﻿@model HappinessMetric.Models.UserViewModel
+@{
     //ViewBag.Title = "Home Page";
-    string lanid = Request.LogonUserIdentity.Name;
-    string user = lanid.Substring(lanid.IndexOf('\\') + 1);
+    
 }
 
 
@@ -11,8 +11,7 @@
     <div style="font-size:25px">Please provide the ratings</div>
     <div class="clear">
                     </div>
-   @{if (user == "bakkiyalakshmir")
-          {
+ 
            
           <table style="width : 100%">
               <tr>
@@ -63,13 +62,13 @@
        @*
         <input type="button" id="Clear-@viewId"  name="Clear" class="button blue floatRight" style="margin-right:5%;" value="CLEAR">
                     
-       *@<div><input type="button" value ="SUBMIT" name="submit" class="btn btn-primary" /> <input type="button" value ="CLEAR" id="btnClear" name="Clear" class="btn btn-primary" /></div>
-          }
-     else
-     {
+       *@<div><input type="button" value ="SUBMIT" name="submit" class="btn btn-primary" /> <input type="button" value ="CLEAR" id="btnClear" name="Clear" class="btn btn-info" /></div>
+          
+     
+     @*{
               <h4 style="color: red;">Oops, You are not an authorized user.</h4>
            }
-       }
+       }*@
                   
 </div>
 

@@ -98,9 +98,10 @@ h5, h6 {
 }
 
 #body {
-    background-color: #cce7f1;
+    background-color: #f8f8ff;
     clear: both;
-    padding-bottom: 5%;
+    /*padding-bottom: 5%;*/
+    height:85%;
 }
 
 .main-content {
@@ -118,9 +119,10 @@ header .content-wrapper {
 
 footer {
     clear: both;
-    background-color: #e2e2e2;
-    font-size: .8em;
-    height: 100px;
+    /*background-color: #e2e2e2;*/
+    font-size: 1.2em;
+    /*height: 100px;*/
+    color:black;
 }
 
 

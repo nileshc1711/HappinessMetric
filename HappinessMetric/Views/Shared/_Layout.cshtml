@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <title>@ViewBag.Title - Happiness Metric</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/style.css" rel="stylesheet" />
@@ -13,8 +13,10 @@
     @Scripts.Render("~/bundles/modernizr")
     @{
         //ViewBag.Title = "Home Page";
-        string lanid = Request.LogonUserIdentity.Name;
-        string user = lanid.Substring(lanid.IndexOf('\\') + 1);
+        var userModel = new HappinessMetric.Models.UserViewModel
+        {
+            LanID = Request.LogonUserIdentity.Name
+        };
     }
 </head>
 
@@ -35,7 +37,7 @@
             </div>
             <div class="float-right">
                 <div class="Userdropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome <span id="usernamestyle">@user</span>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome <span id="usernamestyle">@userModel.UserName</span>
                     </a>
                 </div>
             </div>
@@ -53,7 +55,7 @@
     </div>
     <footer>
         <div class="content-wrapper">
-            <div class="float-left">
+            <div style="text-align:center">
                 <p>&copy; @DateTime.Now.Year - Medusind Solutions</p>
             </div>
         </div>

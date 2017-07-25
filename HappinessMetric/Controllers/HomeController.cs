@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HappinessMetric.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,9 +11,12 @@ namespace HappinessMetric.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            var userViewModel = new UserViewModel
+            {
+                LanID = Request.LogonUserIdentity.Name
+            };
 
-            return View();
+            return View(userViewModel);
         }
 
       
