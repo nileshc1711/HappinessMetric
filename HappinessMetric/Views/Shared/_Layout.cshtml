@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/modernizr")
+    @{
+        //ViewBag.Title = "Home Page";
+        string lanid = Request.LogonUserIdentity.Name;
+        string user = lanid.Substring(lanid.IndexOf('\\') + 1);
+    }
+</head>
+
+<body>
+    <header>
+        <div id="navigation">
+            <div class="float-left">
+                <p id="brand">@Html.ActionLink("Happiness Metric", "Index", "Home")</p>
+            </div>
+            <div id="hometab" >
+                <ul class="main-nav">
+                    <li>
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+                    <li>@Html.ActionLink("Report", "UserReport", "Report")</li>
+                </ul>
+
+            </div>
+            <div class="float-right">
+                <div class="Userdropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome <span id="usernamestyle">@user</span>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - Medusind Solutions</p>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

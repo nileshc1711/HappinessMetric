@@ -1,0 +1,82 @@
+﻿@{
+    //ViewBag.Title = "Home Page";
+    string lanid = Request.LogonUserIdentity.Name;
+    string user = lanid.Substring(lanid.IndexOf('\\') + 1);
+}
+
+
+
+<div style="width : 100%">
+
+    <div style="font-size:25px">Please provide the ratings</div>
+    <div class="clear">
+                    </div>
+   @{if (user == "bakkiyalakshmir")
+          {
+           
+          <table style="width : 100%">
+              <tr>
+                  <td style="width : 30%">How happy are you with your team?</td>
+                   <td colspan="5">
+                       <label class="col-sm-2">@Html.RadioButton("Rating", "5") Very Happy</label>
+                       <label class="col-sm-2">@Html.RadioButton("Rating", "4") Happy</label>
+                       <label class="col-sm-2">@Html.RadioButton("Rating", "3") Satisfactory</label>
+                       <label class="col-sm-2">@Html.RadioButton("Rating", "2") UnHappy</label>
+                       <label class="col-sm-3">@Html.RadioButton("Rating", "1") Very UnHappy</label>
+                   </td>
+                 @* <td style="width : 13%"><label>@Html.RadioButton("Rating", "5") Very Happy</label> </td>
+                  <td style="width : 13%"><label>@Html.RadioButton("Rating", "4") Happy</label> </td>
+                  <td style="width : 13%"><label>@Html.RadioButton("Rating", "3") Satisfactory</label> </td>
+                  <td style="width : 13%"><label>@Html.RadioButton("Rating", "2") UnHappy</label></td>
+                  <td style="width : 13%"><label>@Html.RadioButton("Rating", "1") Very UnHappy</label> </td>*@
+              </tr>
+              <tr>
+                  <td >What feels best right now?</td>
+                  <td colspan="5">@Html.TextArea("BestFeel",null, new { @class = "clrVal col-sm-11" })
+                     @* @Html.TextBox("BestFeel",null, new { @class = "clrVal col-sm-10" })*@
+
+                  </td>
+              </tr>
+              <tr>
+                  <td >What feels worst right now?</td>
+                  <td colspan="5">@Html.TextArea("WorstFeel",null, new { @class = "clrVal col-sm-11" })
+                    @*  @Html.TextBox("WorstFeel",null, new { @class = "clrVal col-sm-10" })*@
+
+                  </td>
+              </tr>
+              <tr>
+                  <td>What would increase your happiness index?</td>
+                  <td colspan="5">@Html.TextArea("IncreaseHappiness",null, new { @class = "clrVal col-sm-11" })
+                     @* @Html.TextBox("IncreaseHappiness", null,new { @class = "clrVal col-sm-10" })*@
+
+                  </td>
+              </tr>
+             
+              @* <tr >
+                 <td colspan="6"><input type="button" value ="Submit" /> <input type="button" value ="Clear" id="btnClear" /> </td>
+              </tr>*@
+          </table>
+        <div class="clear">
+                    </div>
+       <div class="clear">
+                    </div>
+       @*
+        <input type="button" id="Clear-@viewId"  name="Clear" class="button blue floatRight" style="margin-right:5%;" value="CLEAR">
+                    
+       *@<div><input type="button" value ="SUBMIT" name="submit" class="btn btn-primary" /> <input type="button" value ="CLEAR" id="btnClear" name="Clear" class="btn btn-primary" /></div>
+          }
+     else
+     {
+              <h4 style="color: red;">Oops, You are not an authorized user.</h4>
+           }
+       }
+                  
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnClear").click(function () {
+            $(".clrVal").val("");
+        });
+    });
+</script>
