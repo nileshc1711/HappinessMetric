@@ -1,8 +1,5 @@
 ﻿@model HappinessMetric.Models.UserViewModel
-@{
-    //ViewBag.Title = "Home Page";
-    
-}
+
 
 
 
@@ -28,48 +25,34 @@
               <tr>
                   <td >What feels best right now?</td>
                   <td colspan="5">@Html.TextArea("BestFeel",null, new { @class = "clrVal col-sm-11" ,@id = "txtBestFeel" })
-                     @* @Html.TextBox("BestFeel",null, new { @class = "clrVal col-sm-10" })*@
-
-                  </td>
+                      </td>
               </tr>
               <tr>
                   <td >What feels worst right now?</td>
                   <td colspan="5">@Html.TextArea("WorstFeel",null, new { @class = "clrVal col-sm-11" , @id = "txtWorstFeel" })
-                    @*  @Html.TextBox("WorstFeel",null, new { @class = "clrVal col-sm-10" })*@
-
-                  </td>
+                    </td>
               </tr>
               <tr>
                   <td>What would increase your happiness index?</td>
                   <td colspan="5">@Html.TextArea("IncreaseHappiness",null, new { @class = "clrVal col-sm-11", @id = "txtIncreaseHappiness" })
-                     @* @Html.TextBox("IncreaseHappiness", null,new { @class = "clrVal col-sm-10" })*@
-
-                  </td>
+                     </td>
               </tr>
-             
-              @* <tr >
-                 <td colspan="6"><input type="button" value ="Submit" /> <input type="button" value ="Clear" id="btnClear" /> </td>
-              </tr>*@
-          </table>
+              </table>
         <div class="clear">
                     </div>
        <div class="clear">
                     </div>
-       @*
-        <input type="button" id="Clear-@viewId"  name="Clear" class="button blue floatRight" style="margin-right:5%;" value="CLEAR">           
-       *@<div><input type="button" value ="SUBMIT" id="btnSubmit" name="submit" class="btn btn-primary" /> <input type="button" value ="CLEAR" id="btnClear" name="Clear" class="btn btn-info" /></div>
+      <div><input type="button" value ="SUBMIT" id="btnSubmit" name="submit" class="btn btn-primary" /> <input type="button" value ="CLEAR" id="btnClear" name="Clear" class="btn btn-info" /></div>
           
      
-     @*{
-              <h4 style="color: red;">Oops, You are not an authorized user.</h4>
-           }
-       }*@
+     
                   
 </div>
 
 <script type="text/javascript">
     var ClearInputs = function () {
         $(".clrVal").val("");
+        $("[name=Rating]").removeAttr("checked");
     };
 
     $(function () {
