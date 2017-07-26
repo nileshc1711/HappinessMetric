@@ -179,6 +179,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Db.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\SprintCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />

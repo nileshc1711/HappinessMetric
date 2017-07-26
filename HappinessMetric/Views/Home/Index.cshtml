@@ -1,6 +1,8 @@
 ﻿@model HappinessMetric.Models.UserViewModel
 
-
+@{ 
+    var currentSprint = HappinessMetric.Utilities.SprintCalculator.GetSprintFromDate(DateTime.Now);
+}
 
 
 <div style="width : 100%">
@@ -61,17 +63,18 @@
         });
 
         $('#btnSubmit').on('click', function () {
-            debugger;
+            
             var data = {
                 //  RatingID: '', 
                 Project: 'MedClarity',
-                Sprint: '58',
+                Sprint: parseInt('@currentSprint'),
                 Developer: '@Model.UserName',
                 HappyRatingwithTeam: $('input[name="Rating"]:checked').val(),
                 FeelsBest: $.trim($("#txtBestFeel").val()),
                 FeelsWorst: $.trim($("#txtWorstFeel").val()),
                 IncreaseHappiness: $.trim($("#txtIncreaseHappiness").val())
             };
+
             $.post("/Home/Index", data)
                             .done(function (data) {
                                 ClearInputs();
