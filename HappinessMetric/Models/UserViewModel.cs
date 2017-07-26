@@ -8,6 +8,7 @@ namespace HappinessMetric.Models
     public class UserViewModel
     {
         public string LanID { get; set; }
+        public bool hasUserSubmittedForCurrentSprint { get; set; }
         public string UserName
         {
             get

@@ -19,6 +19,25 @@ namespace HappinessMetric.Controllers
             return View(userViewModel);
         }
 
+        [HttpPost]
+        public ActionResult Index(Repository.HappinessRating SubmittedRating)
+        {
+            var userViewModel = new UserViewModel
+            {
+                LanID = Request.LogonUserIdentity.Name
+            };
+
+            if (!Repository.DatabaseHelper.hasUserSubmittedForSprint(SubmittedRating.Developer, (int)SubmittedRating.Sprint, SubmittedRating.Project))
+            {
+                Repository.DatabaseHelper.SaveUserFeedback(SubmittedRating);
+            }
+            else
+            {
+                userViewModel.hasUserSubmittedForCurrentSprint = true;
+            }
+            return Json(userViewModel);
+
+        }  
       
     }
 }

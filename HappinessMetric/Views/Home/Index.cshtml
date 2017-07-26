@@ -31,21 +31,21 @@
               </tr>
               <tr>
                   <td >What feels best right now?</td>
-                  <td colspan="5">@Html.TextArea("BestFeel",null, new { @class = "clrVal col-sm-11" })
+                  <td colspan="5">@Html.TextArea("BestFeel",null, new { @class = "clrVal col-sm-11" ,@id = "txtBestFeel" })
                      @* @Html.TextBox("BestFeel",null, new { @class = "clrVal col-sm-10" })*@
 
                   </td>
               </tr>
               <tr>
                   <td >What feels worst right now?</td>
-                  <td colspan="5">@Html.TextArea("WorstFeel",null, new { @class = "clrVal col-sm-11" })
+                  <td colspan="5">@Html.TextArea("WorstFeel",null, new { @class = "clrVal col-sm-11" , @id = "txtWorstFeel" })
                     @*  @Html.TextBox("WorstFeel",null, new { @class = "clrVal col-sm-10" })*@
 
                   </td>
               </tr>
               <tr>
                   <td>What would increase your happiness index?</td>
-                  <td colspan="5">@Html.TextArea("IncreaseHappiness",null, new { @class = "clrVal col-sm-11" })
+                  <td colspan="5">@Html.TextArea("IncreaseHappiness",null, new { @class = "clrVal col-sm-11", @id = "txtIncreaseHappiness" })
                      @* @Html.TextBox("IncreaseHappiness", null,new { @class = "clrVal col-sm-10" })*@
 
                   </td>
@@ -60,9 +60,8 @@
        <div class="clear">
                     </div>
        @*
-        <input type="button" id="Clear-@viewId"  name="Clear" class="button blue floatRight" style="margin-right:5%;" value="CLEAR">
-                    
-       *@<div><input type="button" value ="SUBMIT" name="submit" class="btn btn-primary" /> <input type="button" value ="CLEAR" id="btnClear" name="Clear" class="btn btn-info" /></div>
+        <input type="button" id="Clear-@viewId"  name="Clear" class="button blue floatRight" style="margin-right:5%;" value="CLEAR">           
+       *@<div><input type="button" value ="SUBMIT" id="btnSubmit" name="submit" class="btn btn-primary" /> <input type="button" value ="CLEAR" id="btnClear" name="Clear" class="btn btn-info" /></div>
           
      
      @*{
@@ -73,9 +72,34 @@
 </div>
 
 <script type="text/javascript">
+    var ClearInputs = function () {
+        $(".clrVal").val("");
+    };
+
     $(function () {
         $("#btnClear").click(function () {
-            $(".clrVal").val("");
+            ClearInputs();
+        });
+
+        $('#btnSubmit').on('click', function () {
+            debugger;
+            var data = {
+                //  RatingID: '', 
+                Project: 'MedClarity',
+                Sprint: '58',
+                Developer: '@Model.UserName',
+                HappyRatingwithTeam: $('input[name="Rating"]:checked').val(),
+                FeelsBest: $.trim($("#txtBestFeel").val()),
+                FeelsWorst: $.trim($("#txtWorstFeel").val()),
+                IncreaseHappiness: $.trim($("#txtIncreaseHappiness").val())
+            };
+            $.post("/Home/Index", data)
+                            .done(function (data) {
+                                ClearInputs();
+                                if (data.hasUserSubmittedForCurrentSprint) {
+                                    alert("Feedback already submitted for current sprint");
+                                }
+                            });
         });
     });
 </script>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HappinessMetric" Class="DbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=192.168.10.198;Initial Catalog=HappinessMetric;Persist Security Info=True;User ID=HappinessMetric" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="HappinessMetricConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.HappinessRating" Member="HappinessRatings">
+    <Type Name="HappinessRating">
+      <Column Name="RatingID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Project" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Sprint" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Developer" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="HappyRatingwithTeam" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="FeelsBest" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FeelsWorst" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="IncreaseHappiness" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
