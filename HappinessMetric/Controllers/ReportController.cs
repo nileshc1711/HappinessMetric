@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using HappinessMetric.Models;
 
 namespace HappinessMetric.Controllers
 {
@@ -13,8 +14,10 @@ namespace HappinessMetric.Controllers
 
         public ActionResult UserReport()
         {
-            return View();
+            var _HappinessRating = Repository.DatabaseHelper.GetAllRatingDetails();
+            return View(_HappinessRating);
         }
+
 
     }
 }

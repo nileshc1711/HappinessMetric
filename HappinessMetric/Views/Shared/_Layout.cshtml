@@ -5,63 +5,69 @@
     <title>Happiness Metric</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    @Styles.Render("~/Content/css")
-    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/jquery.toast.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.12.4.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    @Scripts.Render("~/bundles/modernizr")
     @{
-        //ViewBag.Title = "Home Page";
         var userModel = new HappinessMetric.Models.UserViewModel
         {
             LanID = Request.LogonUserIdentity.Name
         };
     }
+    <script>
+        $(function () {
+            //alert("success", "Activated your Tab");
+            //alert("error", "Activated your Tab");
+            //alert("warning", "Activated your Tab");
+            //alert("info", "Activated your Tab");
+            $(".tabactive").click(function () {
+                $(".tabactive").removeClass("active");
+                $(this).addClass("active");
+            })
+        })
+    </script>
 </head>
-
-<body>
-    <header>
-        <div id="navigation">
-            <div class="float-left">
-                <p id="brand">@Html.ActionLink("Happiness Metric", "Index", "Home")</p>
+<body id="myhappiness" data-spy="scroll" data-target=".navbar" data-offset="50" contenteditable="false">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/Home/Index">
+                    <img src="~/Images/Medusind.png" /></a>
             </div>
-            <div id="hometab" >
-                <ul class="main-nav">
-                    <li>
-                        @Html.ActionLink("Home", "Index", "Home")
-                    </li>
-                    <li>@Html.ActionLink("Report", "UserReport", "Report")</li>
-                </ul>
-
-            </div>
-            <div class="float-right">
-                <div class="Userdropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome <span id="usernamestyle">@userModel.UserName</span>
-                    </a>
+            <div class="row" style="margin-top: 14px;">
+                <div class="col-sm-5">
+                    <h3>Happiness Metric</h3>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="tabactive"><a href="~/Home/Index"><p>Home</p></a></li>
+                        <li class="tabactive"><a href="~/Report/UserReport"><p>Report</p></a></li>
+                        <li><a class="smallfont" href="#">Welcome <span class="smallfont">@userModel.UserName</span></a></li>
+                    </ul>
                 </div>
             </div>
 
-
         </div>
-
-
-    </header>
+    </nav>
     <div id="body">
-        @RenderSection("featured", required: false)
-        <section class="content-wrapper main-content clear-fix">
-            @RenderBody()
-        </section>
+        @RenderBody()
     </div>
-    <footer>
+    <footer class="navbar-fixed-bottom">
         <div class="content-wrapper">
-            <div style="text-align:center">
+            <div style="text-align: center">
                 <p>&copy; @DateTime.Now.Year - Medusind Solutions</p>
             </div>
         </div>
     </footer>
-
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
