@@ -16,5 +16,20 @@ namespace HappinessMetric.Models
                 return LanID.Substring(LanID.IndexOf('\\') + 1);
             }
         }
+        public int CurrentSprint
+        {
+            get
+            {
+                return Utilities.SprintCalculator.GetSprintFromDate(DateTime.Now);
+            }
+        }
+
+        public IEnumerable<int> LastThreeSprints
+        {
+            get
+            {
+                return Utilities.SprintCalculator.GetTotalSprintsTillDate(DateTime.Now);
+            }
+        }
     }
 }
