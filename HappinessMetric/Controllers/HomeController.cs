@@ -37,7 +37,15 @@ namespace HappinessMetric.Controllers
             }
             return Json(userViewModel);
 
-        }  
-      
+        }
+        [HttpPost]
+        public JsonResult GetSprintNo()
+        {
+
+            UserViewModel usermodel = new UserViewModel();
+            var data = usermodel.LastThreeSprints;
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
