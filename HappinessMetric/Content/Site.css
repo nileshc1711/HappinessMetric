@@ -1,12 +1,12 @@
 ﻿body {
-    color: #777;
+    color: #333;
 }
 
 #myhappiness {
     background-color: #CCE7F1 !important;
 }
 
-h3, h4 {
+h3, h4, h5 {
     margin: 10px 0 30px 0;
     letter-spacing: 5px;
     font-size: 20px;
@@ -92,10 +92,10 @@ h1 h2 h3 h4 h5 h6 {
     color: #000;
 }
 
-.modal-header, h4, .close {
+.modal-header, h5, .close {
     color: #131212 !important;
-    text-align: center;
-    font-size: 30px;
+    text-align: left;
+    font-size: 20px;
 }
 
 .modal-header, .modal-body {
