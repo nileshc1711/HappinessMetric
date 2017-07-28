@@ -18,7 +18,7 @@ namespace HappinessMetric.Repository
             }
         }
 
-        public static bool hasUserSubmittedForSprint(string username, int sprintId , string projectName)
+        public static bool HasUserSubmittedForSprint(string username, int sprintId , string projectName)
         {
             using(var _context = new DbDataContext())
             {
