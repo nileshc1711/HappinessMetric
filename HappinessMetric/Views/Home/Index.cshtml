@@ -73,7 +73,6 @@
             <input type="button" value="SUBMIT" id="btnSubmit" name="submit" class="btn btn-primary" />
             <input type="reset" value="CLEAR" id="btnClear" name="Clear" class="btn btn-info" />
         </div>
-
     </div>
 </form>
 <script type="text/javascript">
@@ -101,7 +100,7 @@
 
             var data = {
                 Project: 'MedClarity',
-                Sprint: parseInt('@currentSprint'),
+                Sprint: parseInt('@Model.CurrentSprint'),
                 Developer: '@Model.UserName',
                 HappyRatingwithTeam: $('input[name="Rating"]:checked').val(),
                 FeelsBest: $.trim($("#txtBestFeel").val()),
