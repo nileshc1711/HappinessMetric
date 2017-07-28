@@ -1,79 +1,84 @@
 ﻿@model HappinessMetric.Models.UserViewModel
 @{
-    //ViewBag.Title = "Home Page";
-    
+    ViewBag.Title = "Happiness Metric";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Scripts.Render("~/bundles/jquery")
+<form class="container" id="homehappiness">
+    <div class="row">
+        <h4 class="col-sm-9">Please provide the ratings</h4>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                <label>How happy are you with your team?</label>
+            </div>
+            <div class="col-sm-8">
+                <div class="col-sm-2">
+                    <p class="radio-inline">
+                        <input type="radio" name="Rating" value="5" />VeryHappy
+                    </p>
+                </div>
+                <div class="col-sm-2">
+                    <p class="radio-inline">
+                        <input type="radio" name="Rating" value="4" />Happy
+                    </p>
+                </div>
+                <div class="col-sm-2">
+                    <p class="radio-inline">
+                        <input type="radio" name="Rating" value="3" />Satisfactory
+                    </p>
+                </div>
+                <div class="col-sm-2">
+                    <p class="radio-inline">
+                        <input type="radio" name="Rating" value="2" />UnHappy
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <p class="radio-inline">
+                        <input type="radio" name="Rating" value="1" />Very UnHappy
+                    </p>
+                </div>
+                <br />
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-4" style="margin-top: 30px;">
+                <label>What feels best right now?</label>
+            </div>
+            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("BestFeel", null, new { @class = "clrVal col-sm-11" })</div>
+            <br />
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-4" style="margin-top: 30px;">
+                <label>What feels worst right now?</label>
+            </div>
+            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("WorstFeel", null, new { @class = "clrVal col-sm-11" })</div>
+            <br />
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-4" style="margin-top: 30px;">
+                <label>What would increase your happiness index?</label>
+            </div>
+            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("IncreaseHappiness", null, new { @class = "clrVal col-sm-11" })</div>
+        </div>
+    </div>
+    <br />
+    <div class="col-sm-12">
+        <div class="col-sm-9">
+        </div>
+        <div class="col-sm-2">
+            <input type="button" value="SUBMIT" id="btnSubmit" name="submit" class="btn btn-primary" />
+            <input type="reset" value="CLEAR" id="btnClear" name="Clear" class="btn btn-info" />
+        </div>
 
-
-
-<div style="width : 100%">
-
-    <div style="font-size:25px">Please provide the ratings</div>
-    <div class="clear">
-                    </div>
- 
-           
-          <table style="width : 100%">
-              <tr>
-                  <td style="width : 30%">How happy are you with your team?</td>
-                   <td colspan="5">
-                       <label class="col-sm-2">@Html.RadioButton("Rating", "5") Very Happy</label>
-                       <label class="col-sm-2">@Html.RadioButton("Rating", "4") Happy</label>
-                       <label class="col-sm-2">@Html.RadioButton("Rating", "3") Satisfactory</label>
-                       <label class="col-sm-2">@Html.RadioButton("Rating", "2") UnHappy</label>
-                       <label class="col-sm-3">@Html.RadioButton("Rating", "1") Very UnHappy</label>
-                   </td>
-                
-              </tr>
-              <tr>
-                  <td >What feels best right now?</td>
-                  <td colspan="5">@Html.TextArea("BestFeel",null, new { @class = "clrVal col-sm-11" ,@id = "txtBestFeel" })
-                     @* @Html.TextBox("BestFeel",null, new { @class = "clrVal col-sm-10" })*@
-
-                  </td>
-              </tr>
-              <tr>
-                  <td >What feels worst right now?</td>
-                  <td colspan="5">@Html.TextArea("WorstFeel",null, new { @class = "clrVal col-sm-11" , @id = "txtWorstFeel" })
-                    @*  @Html.TextBox("WorstFeel",null, new { @class = "clrVal col-sm-10" })*@
-
-                  </td>
-              </tr>
-              <tr>
-                  <td>What would increase your happiness index?</td>
-                  <td colspan="5">@Html.TextArea("IncreaseHappiness",null, new { @class = "clrVal col-sm-11", @id = "txtIncreaseHappiness" })
-                     @* @Html.TextBox("IncreaseHappiness", null,new { @class = "clrVal col-sm-10" })*@
-
-                  </td>
-              </tr>
-             
-              @* <tr >
-                 <td colspan="6"><input type="button" value ="Submit" /> <input type="button" value ="Clear" id="btnClear" /> </td>
-              </tr>*@
-          </table>
-        <div class="clear">
-                    </div>
-       <div class="clear">
-                    </div>
-     <div><input type="button" value ="SUBMIT" id="btnSubmit" name="submit" class="btn btn-primary" /> <input type="button" value ="CLEAR" id="btnClear" name="Clear" class="btn btn-info" /></div>
-          
-          
-</div>
-
+    </div>
+</form>
 <script type="text/javascript">
-    var ClearInputs = function () {
-        $(".clrVal").val("");
-    };
-
     $(function () {
-        $("#btnClear").click(function () {
-            ClearInputs();
-        });
-
         $('#btnSubmit').on('click', function () {
             debugger;
             var data = {
-                //  RatingID: '', 
                 Project: 'MedClarity',
                 Sprint: '58',
                 Developer: '@Model.UserName',

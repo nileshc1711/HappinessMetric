@@ -1,45 +1,61 @@
-﻿@{
+﻿@model List<HappinessMetric.Repository.HappinessRating>
+@{
     ViewBag.Title = "UserReport";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/buttons.bootstrap.min.css" rel="stylesheet" />
 
-<h2></h2>
-
-<div class="box box-color box-bordered">
-    <div class="box-title">
-        <h3>           
-           UserReport
-        </h3>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<form class="container" id="userreportform">
+    <div class="row">
+        <div class="col-sm-4">
+            <h4 class="userrpeort">Rating Report</h4>
+        </div>
     </div>
-    <div class="box-content nopadding">
-        <table class="table table-hover table-nomargin">
-            <thead>
+    <table id="userreporttable" class="table table-striped table-bordered nowrap">
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>Sprint</th>
+                <th>Developer</th>
+                <th>Rating</th>
+                <th>What feels best right now?</th>
+                <th>What feels worst right now?</th>
+                <th>What would increase your happiness index?</th>
+                <th>Created on</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th>Project</th>
-                    <th>Sprint</th>
-                    <th>Developer</th>
-                    <th>How happy are you with your team?</th>
-                    <th>What feels best right now?</th>
-                    <th>What feels worst right now?</th>
-                    <th>What would increase your happiness index?</th>
-                    <th>Updated on</th>
+                    <td>@Html.DisplayFor(ModelItem => item.Project) </td>
+                    <td>@Html.DisplayFor(ModelItem => item.Sprint) </td>
+                    <td>@Html.DisplayFor(ModelItem => item.Developer) </td>
+                    <td>@Html.DisplayFor(ModelItem => item.HappyRatingwithTeam) </td>
+                    <td>@Html.DisplayFor(ModelItem => item.FeelsBest) </td>
+                    <td>@Html.DisplayFor(ModelItem => item.FeelsWorst) </td>
+                    <td>@Html.DisplayFor(ModelItem => item.IncreaseHappiness) </td>
+                    <td>@Html.DisplayFor(ModelItem => item.CreatedOn) </td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Medclarity</td>
-                    <td>50</td>
-                    <td>Bakkiyalakshmir</td>
-                    <td>5</td>
-                    <td>Working in Medclarity</td>
-                    <td>Nothing</td>
-                    <td>new Technology</td>
-                    <td>jul 20 2017</td>
-                </tr>
+            }
+        </tbody>
+    </table>
 
-            </tbody>
-        </table>
-    </div>
-    <div class="clear">
-    </div>
-</div>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#userreporttable').DataTable({
+            "scrollY": 200,
+            "scrollX": true,
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+
+
+</script>
