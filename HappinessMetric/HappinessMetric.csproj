@@ -179,6 +179,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Db.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\SprintCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
@@ -193,6 +194,7 @@
     <Content Include="Content\Font\glyphicons-halflings-regular.html" />
     <Content Include="Content\Font\glyphicons-halflings-regulard41d.html" />
     <Content Include="Content\jquery.dataTables.min.css" />
+    <Content Include="Content\jquery.toast.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -256,17 +258,20 @@
       <LastGenOutput>Db.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\alert.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Font\fontawesome-webfont.eot" />
     <Content Include="Content\Font\fontawesome-webfont.ttf" />
     <Content Include="Content\Font\fontawesome-webfont.woff" />
     <Content Include="Content\Font\fontawesome-webfont.woff2" />
     <Content Include="Content\Font\FontAwesome.otf" />
+    <Content Include="Scripts\buttons.print.min.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.toast.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />

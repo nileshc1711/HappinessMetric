@@ -21,7 +21,7 @@ h3, h4 {
     padding: 80px 27px;
 }
 
-#userreportform,#homehappiness {
+#userreportform, #homehappiness {
     background-color: white;
 }
 
@@ -189,4 +189,12 @@ textarea {
 
 #myNavbar ul {
     margin-right: 1px !important;
+}
+
+li.tabactive p {
+    font-size: large !important;
+}
+
+.smallfont {
+    font-size: small;
 }

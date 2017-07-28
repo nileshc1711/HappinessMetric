@@ -9,9 +9,10 @@
     <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/jquery.toast.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.12.4.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <link href="~/Content/Site.css" rel="stylesheet" />
     @{
         var userModel = new HappinessMetric.Models.UserViewModel
         {
@@ -20,6 +21,10 @@
     }
     <script>
         $(function () {
+            //alert("success", "Activated your Tab");
+            //alert("error", "Activated your Tab");
+            //alert("warning", "Activated your Tab");
+            //alert("info", "Activated your Tab");
             $(".tabactive").click(function () {
                 $(".tabactive").removeClass("active");
                 $(this).addClass("active");
@@ -45,9 +50,9 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="tabactive"><a href="~/Home/Index">Home</a></li>
-                        <li class="tabactive"><a href="~/Report/UserReport">Report</a></li>
-                        <li><a href="#">Welcome <span>@userModel.UserName</span></a></li>
+                        <li class="tabactive"><a href="~/Home/Index"><p>Home</p></a></li>
+                        <li class="tabactive"><a href="~/Report/UserReport"><p>Report</p></a></li>
+                        <li><a class="smallfont" href="#">Welcome <span class="smallfont">@userModel.UserName</span></a></li>
                     </ul>
                 </div>
             </div>
