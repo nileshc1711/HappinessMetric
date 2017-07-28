@@ -8,7 +8,16 @@
 <script src="~/Scripts/alert.js"></script>
 <form class="container" id="homehappiness">
     <div class="row">
-        <h4 class="col-sm-6">Please provide the ratings</h4>
+        <div class="col-sm-9">
+            <h5>Please provide the ratings</h5>
+        </div>
+        <div class="col-sm-1" style="margin-top: 10px;">
+            <label>Sprint</label>
+        </div>
+        <div class="col-sm-1" style="margin-top: 6px;">
+            <select style="border-color:red" id="ddlsprint" class="form-control">
+            </select>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
@@ -119,6 +128,15 @@
                                             }
                                         });
         });
+        $(function () {
+            $.post("/Home/GetSprintNo").done(function (data) {
+                debugger;
+                $.each(data, function (i, data) {
+                    $("#ddlsprint").append("<option value=" + data + ">" + data + "</option>")
+                })
+            });
+        })
+
     });
 
 </script>
