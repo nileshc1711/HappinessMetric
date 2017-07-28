@@ -1,69 +1,104 @@
 ﻿@model HappinessMetric.Models.UserViewModel
-
-
-
-
-<div style="width : 100%">
-
-    <div style="font-size:25px">Please provide the ratings</div>
-    <div class="clear">
-                    </div>
- 
-           
-          <table style="width : 100%">
-              <tr>
-                  <td style="width : 30%">How happy are you with your team?</td>
-                   <td colspan="5">
-                       <label class="col-sm-2">@Html.RadioButton("Rating", "5") Very Happy</label>
-                       <label class="col-sm-2">@Html.RadioButton("Rating", "4") Happy</label>
-                       <label class="col-sm-2">@Html.RadioButton("Rating", "3") Satisfactory</label>
-                       <label class="col-sm-2">@Html.RadioButton("Rating", "2") UnHappy</label>
-                       <label class="col-sm-3">@Html.RadioButton("Rating", "1") Very UnHappy</label>
-                   </td>
-                
-              </tr>
-              <tr>
-                  <td >What feels best right now?</td>
-                  <td colspan="5">@Html.TextArea("BestFeel",null, new { @class = "clrVal col-sm-11" ,@id = "txtBestFeel" })
-                      </td>
-              </tr>
-              <tr>
-                  <td >What feels worst right now?</td>
-                  <td colspan="5">@Html.TextArea("WorstFeel",null, new { @class = "clrVal col-sm-11" , @id = "txtWorstFeel" })
-                    </td>
-              </tr>
-              <tr>
-                  <td>What would increase your happiness index?</td>
-                  <td colspan="5">@Html.TextArea("IncreaseHappiness",null, new { @class = "clrVal col-sm-11", @id = "txtIncreaseHappiness" })
-                     </td>
-              </tr>
-              </table>
-        <div class="clear">
-                    </div>
-       <div class="clear">
-                    </div>
-
-     <div><input type="button" value ="SUBMIT" id="btnSubmit" name="submit" class="btn btn-primary" /> <input type="button" value ="CLEAR" id="btnClear" name="Clear" class="btn btn-info" /></div>
-          
-          
-
-</div>
-
+@{
+    ViewBag.Title = "Happiness Metric";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var currentSprint = HappinessMetric.Utilities.SprintCalculator.GetSprintFromDate(DateTime.Now);
+}
+<script src="~/Scripts/jquery.toast.js"></script>
+<script src="~/Scripts/alert.js"></script>
+<form class="container" id="homehappiness">
+    <div class="row">
+        <h4 class="col-sm-6">Please provide the ratings</h4>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                <label>How happy are you with your team?</label><span style="color: red;">*</span>
+            </div>
+            <div class="col-sm-8">
+                <div class="col-sm-2">
+                    <p class="radio-inline">
+                        <input type="radio" name="Rating" value="5" />VeryHappy
+                    </p>
+                </div>
+                <div class="col-sm-2">
+                    <p class="radio-inline">
+                        <input type="radio" name="Rating" value="4" />Happy
+                    </p>
+                </div>
+                <div class="col-sm-2">
+                    <p class="radio-inline">
+                        <input type="radio" name="Rating" value="3" />Satisfactory
+                    </p>
+                </div>
+                <div class="col-sm-2">
+                    <p class="radio-inline">
+                        <input type="radio" name="Rating" value="2" />UnHappy
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <p class="radio-inline">
+                        <input type="radio" name="Rating" value="1" />Very UnHappy
+                    </p>
+                </div>
+                <br />
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-4" style="margin-top: 30px;">
+                <label>What feels best right now?</label><span style="color: red;">*</span>
+            </div>
+            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("BestFeel", null, new { @class = "clrVal col-sm-11", @id = "txtBestFeel" })</div>
+            <br />
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-4" style="margin-top: 30px;">
+                <label>What feels worst right now?</label><span style="color: red;">*</span>
+            </div>
+            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("WorstFeel", null, new { @class = "clrVal col-sm-11", @id = "txtWorstFeel" })</div>
+            <br />
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-4" style="margin-top: 30px;">
+                <label>What would increase your happiness index?</label><span style="color: red;">*</span>
+            </div>
+            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("IncreaseHappiness", null, new { @class = "clrVal col-sm-11", @id = "txtIncreaseHappiness" })</div>
+        </div>
+    </div>
+    <br />
+    <div class="col-sm-12">
+        <div class="col-sm-9">
+        </div>
+        <div class="col-sm-2">
+            <input type="button" value="SUBMIT" id="btnSubmit" name="submit" class="btn btn-primary" />
+            <input type="reset" value="CLEAR" id="btnClear" name="Clear" class="btn btn-info" />
+        </div>
+    </div>
+</form>
 <script type="text/javascript">
-    var ClearInputs = function () {
-        $(".clrVal").val("");
-        $("[name=Rating]").removeAttr("checked");
-    };
-
     $(function () {
-        $("#btnClear").click(function () {
-            ClearInputs();
-        });
-
         $('#btnSubmit').on('click', function () {
-            
+            if (!$("input:radio[name='Rating']").is(":checked")) {
+                alert("error", "Please select rating");
+                return false;
+            }
+            else if ($.trim($("#txtBestFeel").val()) == '') {
+                alert("error", "Please enter \"What feels best right now?\" ");
+                $("#txtBestFeel").focus();
+                return false;
+            }
+            else if ($.trim($("#txtWorstFeel").val()) == '') {
+                alert("error", "Please enter \"What feels worst right now?\" ");
+                $("#txtWorstFeel").focus();
+                return false;
+            }
+            else if ($.trim($("#txtIncreaseHappiness").val()) == '') {
+                alert("error", "Please enter \"What would increase your happiness index?\"");
+                $("#txtIncreaseHappiness").focus();
+                return false;
+            }
+
             var data = {
-                //  RatingID: '', 
                 Project: 'MedClarity',
                 Sprint: parseInt('@Model.CurrentSprint'),
                 Developer: '@Model.UserName',
@@ -72,14 +107,18 @@
                 FeelsWorst: $.trim($("#txtWorstFeel").val()),
                 IncreaseHappiness: $.trim($("#txtIncreaseHappiness").val())
             };
-
             $.post("/Home/Index", data)
-                            .done(function (data) {
-                                ClearInputs();
-                                if (data.hasUserSubmittedForCurrentSprint) {
-                                    alert("Feedback already submitted for current sprint");
-                                }
-                            });
+                                        .done(function (data) {
+                                            if (data.hasUserSubmittedForCurrentSprint) {
+                                                alert("warning", "Feedback already submitted for current sprint");
+                                                $("#btnClear").click();
+                                            }
+                                            else {
+                                                alert("success", "Rating successfully submitted");
+                                                $("#btnClear").click();
+                                            }
+                                        });
         });
     });
+
 </script>
