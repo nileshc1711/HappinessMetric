@@ -33,7 +33,7 @@ namespace HappinessMetric.Controllers
             }
             else
             {
-                userViewModel.hasUserSubmittedForCurrentSprint = true;
+                userViewModel.HasUserSubmittedForCurrentSprint = true;
             }
             return Json(userViewModel);
 
