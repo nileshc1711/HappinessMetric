@@ -37,5 +37,13 @@ namespace HappinessMetric.Models
                 return new string[] { "MedClarity" };
             }
         }
+        public bool IsAdmin
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings.Get("AdminRole").Contains(UserName);
+            }
+        }
+        
     }
 }
