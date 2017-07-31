@@ -27,13 +27,13 @@ namespace HappinessMetric.Controllers
                 LanID = Request.LogonUserIdentity.Name
             };
 
-            if (!Repository.DatabaseHelper.hasUserSubmittedForSprint(SubmittedRating.Developer, (int)SubmittedRating.Sprint, SubmittedRating.Project))
+            if (!Repository.DatabaseHelper.HasUserSubmittedForSprint(SubmittedRating.Developer, (int)SubmittedRating.Sprint, SubmittedRating.Project))
             {
                 Repository.DatabaseHelper.SaveUserFeedback(SubmittedRating);
             }
             else
             {
-                userViewModel.hasUserSubmittedForCurrentSprint = true;
+                userViewModel.HasUserSubmittedForCurrentSprint = true;
             }
             return Json(userViewModel);
 

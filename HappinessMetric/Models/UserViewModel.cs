@@ -8,7 +8,7 @@ namespace HappinessMetric.Models
     public class UserViewModel
     {
         public string LanID { get; set; }
-        public bool hasUserSubmittedForCurrentSprint { get; set; }
+        public bool HasUserSubmittedForCurrentSprint { get; set; }
         public string UserName
         {
             get
@@ -20,7 +20,7 @@ namespace HappinessMetric.Models
         {
             get
             {
-                return Utilities.SprintCalculator.GetSprintFromDate(DateTime.Now);
+                return Utilities.SprintCalculator.GetCurrentSprint;
             }
         }
 
@@ -31,5 +31,19 @@ namespace HappinessMetric.Models
                 return Utilities.SprintCalculator.GetTotalSprintsTillDate(DateTime.Now);
             }
         }
+        public IEnumerable<string> Projects {
+            get
+            {
+                return new string[] { "MedClarity" };
+            }
+        }
+        public bool IsAdmin
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings.Get("AdminRole").Contains(UserName);
+            }
+        }
+        
     }
 }

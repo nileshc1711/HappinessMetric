@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Happiness Metric";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var currentSprint = HappinessMetric.Utilities.SprintCalculator.GetSprintFromDate(DateTime.Now);
 }
 <script src="~/Scripts/jquery.toast.js"></script>
 <script src="~/Scripts/alert.js"></script>
@@ -15,8 +14,9 @@
             <label>Sprint</label>
         </div>
         <div class="col-sm-1" style="margin-top: 6px;">
-            <select style="border-color:red" id="ddlsprint" class="form-control">
-            </select>
+            @*<select style="border-color:red" id="ddlsprint" class="form-control">
+            </select>*@
+            @Html.DropDownList("ddlsprint", Model.LastThreeSprints.Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }),new { @class="form-control" })
         </div>
     </div>
     <div class="row">
@@ -108,8 +108,8 @@
             }
 
             var data = {
-                Project: 'MedClarity',
-                Sprint: parseInt('@Model.CurrentSprint'),
+                Project: '@Model.Projects.First()',
+                Sprint: parseInt($.trim($('#ddlsprint').val())),
                 Developer: '@Model.UserName',
                 HappyRatingwithTeam: $('input[name="Rating"]:checked').val(),
                 FeelsBest: $.trim($("#txtBestFeel").val()),
@@ -118,7 +118,7 @@
             };
             $.post("/Home/Index", data)
                                         .done(function (data) {
-                                            if (data.hasUserSubmittedForCurrentSprint) {
+                                            if (data.HasUserSubmittedForCurrentSprint) {
                                                 alert("warning", "Feedback already submitted for current sprint");
                                                 $("#btnClear").click();
                                             }
@@ -128,14 +128,7 @@
                                             }
                                         });
         });
-        $(function () {
-            $.post("/Home/GetSprintNo").done(function (data) {
-                debugger;
-                $.each(data, function (i, data) {
-                    $("#ddlsprint").append("<option value=" + data + ">" + data + "</option>")
-                })
-            });
-        })
+        
 
     });
 
