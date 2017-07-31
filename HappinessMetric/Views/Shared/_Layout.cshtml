@@ -50,8 +50,11 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="tabactive"><a href="~/Home/Index"><p>Home</p></a></li>
-                        <li class="tabactive"><a href="~/Report/UserReport"><p>Report</p></a></li>
+                        @if (userModel.IsAdmin)
+                        {
+                            <li class="tabactive"><a href="~/Home/Index"><p>Home</p></a></li>
+                            <li class="tabactive"><a href="~/Report/UserReport"><p>Report</p></a></li>
+                        }
                         <li><a class="smallfont" href="#">Welcome <span class="smallfont">@userModel.UserName</span></a></li>
                     </ul>
                 </div>
