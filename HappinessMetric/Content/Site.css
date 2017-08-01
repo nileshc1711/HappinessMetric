@@ -205,9 +205,6 @@ li.tabactive p {
     margin-top:1% !important;
 }
 
-/*.userreporttable {
-    width:100% !important;
-}*/
 #userreporttable td.ellipsis {
     max-width: 150px;
     overflow: hidden;

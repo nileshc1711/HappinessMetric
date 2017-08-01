@@ -23,17 +23,17 @@
         </div>
     </div>
 
-    <table id="userreporttable" class="table table-striped table-bordered nowrap" >
+    <table id="userreporttable" class="table table-striped table-bordered nowrap">
         <thead>
             <tr>
-                <th style="width:10px">Project</th>
-                <th style="width:10px">Sprint</th>
-                <th style="width:10px">Developer</th>
-                <th style="width:10px">Rating</th>
-                <th style="width:20px !important">What feels best right now?</th>
-                <th style="width:10px">What feels worst right now?</th>
-                <th style="width:10px">What would increase your happiness index?</th>
-                <th style="width:10px">Created on</th>
+                <th>Project</th>
+                <th>Sprint</th>
+                <th>Developer</th>
+                <th>Rating</th>
+                <th>What feels best right now?</th>
+                <th>What feels worst right now?</th>
+                <th>What would increase your happiness index?</th>
+                <th>Created on</th>
             </tr>
         </thead>
         <tbody>
@@ -62,7 +62,7 @@
         var buttonCommon = {
             exportOptions: {
                 format: {
-                    body: function (data, row, column, node) {                        
+                    body: function (data, row, column, node) {
                         return column === 5 ?
                             data.replace(/[$,]/g, '') :
                             data;
@@ -74,22 +74,13 @@
             "scrollX": true,
             "pageLength": 10,
             "bAutoWidth": false,
-            fixedColumns:   true,
+            fixedColumns: true,
             dom: 'Bfrtip',
-            
-           buttons: [
-            //$.extend(true, {}, buttonCommon, {
-            //    extend: 'copyHtml5'
-            //}),
-            $.extend(true, {}, buttonCommon, {
-                extend: 'excelHtml5'
-            })//,
-            //$.extend(true, {}, buttonCommon, {
-            //    extend: 'pdfHtml5'
-            //})
-              
+            buttons: [
+             $.extend(true, {}, buttonCommon, {
+                 extend: 'excelHtml5'
+             })
             ]
-           
         });
     });
 </script>
