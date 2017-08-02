@@ -33,6 +33,18 @@ namespace HappinessMetric.Repository
     partial void InsertHappinessRating(HappinessRating instance);
     partial void UpdateHappinessRating(HappinessRating instance);
     partial void DeleteHappinessRating(HappinessRating instance);
+    partial void InsertProject_Sprint_Detail(Project_Sprint_Detail instance);
+    partial void UpdateProject_Sprint_Detail(Project_Sprint_Detail instance);
+    partial void DeleteProject_Sprint_Detail(Project_Sprint_Detail instance);
+    partial void InsertProject(Project instance);
+    partial void UpdateProject(Project instance);
+    partial void DeleteProject(Project instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+    partial void InsertProject_User_Junc(Project_User_Junc instance);
+    partial void UpdateProject_User_Junc(Project_User_Junc instance);
+    partial void DeleteProject_User_Junc(Project_User_Junc instance);
     #endregion
 		
 		public DbDataContext() : 
@@ -70,6 +82,38 @@ namespace HappinessMetric.Repository
 			get
 			{
 				return this.GetTable<HappinessRating>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Project_Sprint_Detail> Project_Sprint_Details
+		{
+			get
+			{
+				return this.GetTable<Project_Sprint_Detail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Project> Projects
+		{
+			get
+			{
+				return this.GetTable<Project>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Project_User_Junc> Project_User_Juncs
+		{
+			get
+			{
+				return this.GetTable<Project_User_Junc>();
 			}
 		}
 	}
@@ -303,6 +347,758 @@ namespace HappinessMetric.Repository
 					this._CreatedOn = value;
 					this.SendPropertyChanged("CreatedOn");
 					this.OnCreatedOnChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Project_Sprint_Details")]
+	public partial class Project_Sprint_Detail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ps_id;
+		
+		private int _ps_projectId;
+		
+		private int _ps_sprintNo;
+		
+		private System.DateTime _ps_sprintStartDate;
+		
+		private int _ps_sprintDays;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onps_idChanging(int value);
+    partial void Onps_idChanged();
+    partial void Onps_projectIdChanging(int value);
+    partial void Onps_projectIdChanged();
+    partial void Onps_sprintNoChanging(int value);
+    partial void Onps_sprintNoChanged();
+    partial void Onps_sprintStartDateChanging(System.DateTime value);
+    partial void Onps_sprintStartDateChanged();
+    partial void Onps_sprintDaysChanging(int value);
+    partial void Onps_sprintDaysChanged();
+    #endregion
+		
+		public Project_Sprint_Detail()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ps_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ps_id
+		{
+			get
+			{
+				return this._ps_id;
+			}
+			set
+			{
+				if ((this._ps_id != value))
+				{
+					this.Onps_idChanging(value);
+					this.SendPropertyChanging();
+					this._ps_id = value;
+					this.SendPropertyChanged("ps_id");
+					this.Onps_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ps_projectId", DbType="Int NOT NULL")]
+		public int ps_projectId
+		{
+			get
+			{
+				return this._ps_projectId;
+			}
+			set
+			{
+				if ((this._ps_projectId != value))
+				{
+					this.Onps_projectIdChanging(value);
+					this.SendPropertyChanging();
+					this._ps_projectId = value;
+					this.SendPropertyChanged("ps_projectId");
+					this.Onps_projectIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ps_sprintNo", DbType="Int NOT NULL")]
+		public int ps_sprintNo
+		{
+			get
+			{
+				return this._ps_sprintNo;
+			}
+			set
+			{
+				if ((this._ps_sprintNo != value))
+				{
+					this.Onps_sprintNoChanging(value);
+					this.SendPropertyChanging();
+					this._ps_sprintNo = value;
+					this.SendPropertyChanged("ps_sprintNo");
+					this.Onps_sprintNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ps_sprintStartDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ps_sprintStartDate
+		{
+			get
+			{
+				return this._ps_sprintStartDate;
+			}
+			set
+			{
+				if ((this._ps_sprintStartDate != value))
+				{
+					this.Onps_sprintStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._ps_sprintStartDate = value;
+					this.SendPropertyChanged("ps_sprintStartDate");
+					this.Onps_sprintStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ps_sprintDays", DbType="Int NOT NULL")]
+		public int ps_sprintDays
+		{
+			get
+			{
+				return this._ps_sprintDays;
+			}
+			set
+			{
+				if ((this._ps_sprintDays != value))
+				{
+					this.Onps_sprintDaysChanging(value);
+					this.SendPropertyChanging();
+					this._ps_sprintDays = value;
+					this.SendPropertyChanged("ps_sprintDays");
+					this.Onps_sprintDaysChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Projects")]
+	public partial class Project : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _pj_id;
+		
+		private string _pj_name;
+		
+		private string _pj_description;
+		
+		private System.Nullable<int> _pj_parent;
+		
+		private int _pj_isactive;
+		
+		private System.DateTime _pj_createdon;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onpj_idChanging(int value);
+    partial void Onpj_idChanged();
+    partial void Onpj_nameChanging(string value);
+    partial void Onpj_nameChanged();
+    partial void Onpj_descriptionChanging(string value);
+    partial void Onpj_descriptionChanged();
+    partial void Onpj_parentChanging(System.Nullable<int> value);
+    partial void Onpj_parentChanged();
+    partial void Onpj_isactiveChanging(int value);
+    partial void Onpj_isactiveChanged();
+    partial void Onpj_createdonChanging(System.DateTime value);
+    partial void Onpj_createdonChanged();
+    #endregion
+		
+		public Project()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pj_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int pj_id
+		{
+			get
+			{
+				return this._pj_id;
+			}
+			set
+			{
+				if ((this._pj_id != value))
+				{
+					this.Onpj_idChanging(value);
+					this.SendPropertyChanging();
+					this._pj_id = value;
+					this.SendPropertyChanged("pj_id");
+					this.Onpj_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pj_name", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string pj_name
+		{
+			get
+			{
+				return this._pj_name;
+			}
+			set
+			{
+				if ((this._pj_name != value))
+				{
+					this.Onpj_nameChanging(value);
+					this.SendPropertyChanging();
+					this._pj_name = value;
+					this.SendPropertyChanged("pj_name");
+					this.Onpj_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pj_description", DbType="NVarChar(200)")]
+		public string pj_description
+		{
+			get
+			{
+				return this._pj_description;
+			}
+			set
+			{
+				if ((this._pj_description != value))
+				{
+					this.Onpj_descriptionChanging(value);
+					this.SendPropertyChanging();
+					this._pj_description = value;
+					this.SendPropertyChanged("pj_description");
+					this.Onpj_descriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pj_parent", DbType="Int")]
+		public System.Nullable<int> pj_parent
+		{
+			get
+			{
+				return this._pj_parent;
+			}
+			set
+			{
+				if ((this._pj_parent != value))
+				{
+					this.Onpj_parentChanging(value);
+					this.SendPropertyChanging();
+					this._pj_parent = value;
+					this.SendPropertyChanged("pj_parent");
+					this.Onpj_parentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pj_isactive", DbType="Int NOT NULL")]
+		public int pj_isactive
+		{
+			get
+			{
+				return this._pj_isactive;
+			}
+			set
+			{
+				if ((this._pj_isactive != value))
+				{
+					this.Onpj_isactiveChanging(value);
+					this.SendPropertyChanging();
+					this._pj_isactive = value;
+					this.SendPropertyChanged("pj_isactive");
+					this.Onpj_isactiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pj_createdon", DbType="DateTime NOT NULL")]
+		public System.DateTime pj_createdon
+		{
+			get
+			{
+				return this._pj_createdon;
+			}
+			set
+			{
+				if ((this._pj_createdon != value))
+				{
+					this.Onpj_createdonChanging(value);
+					this.SendPropertyChanging();
+					this._pj_createdon = value;
+					this.SendPropertyChanged("pj_createdon");
+					this.Onpj_createdonChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _us_id;
+		
+		private string _us_username;
+		
+		private string _us_firstname;
+		
+		private string _us_lastname;
+		
+		private string _us_email;
+		
+		private int _us_isadmin;
+		
+		private int _us_isactive;
+		
+		private System.DateTime _us_createdon;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onus_idChanging(int value);
+    partial void Onus_idChanged();
+    partial void Onus_usernameChanging(string value);
+    partial void Onus_usernameChanged();
+    partial void Onus_firstnameChanging(string value);
+    partial void Onus_firstnameChanged();
+    partial void Onus_lastnameChanging(string value);
+    partial void Onus_lastnameChanged();
+    partial void Onus_emailChanging(string value);
+    partial void Onus_emailChanged();
+    partial void Onus_isadminChanging(int value);
+    partial void Onus_isadminChanged();
+    partial void Onus_isactiveChanging(int value);
+    partial void Onus_isactiveChanged();
+    partial void Onus_createdonChanging(System.DateTime value);
+    partial void Onus_createdonChanged();
+    #endregion
+		
+		public User()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_us_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int us_id
+		{
+			get
+			{
+				return this._us_id;
+			}
+			set
+			{
+				if ((this._us_id != value))
+				{
+					this.Onus_idChanging(value);
+					this.SendPropertyChanging();
+					this._us_id = value;
+					this.SendPropertyChanged("us_id");
+					this.Onus_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_us_username", DbType="NVarChar(40) NOT NULL", CanBeNull=false)]
+		public string us_username
+		{
+			get
+			{
+				return this._us_username;
+			}
+			set
+			{
+				if ((this._us_username != value))
+				{
+					this.Onus_usernameChanging(value);
+					this.SendPropertyChanging();
+					this._us_username = value;
+					this.SendPropertyChanged("us_username");
+					this.Onus_usernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_us_firstname", DbType="NVarChar(60)")]
+		public string us_firstname
+		{
+			get
+			{
+				return this._us_firstname;
+			}
+			set
+			{
+				if ((this._us_firstname != value))
+				{
+					this.Onus_firstnameChanging(value);
+					this.SendPropertyChanging();
+					this._us_firstname = value;
+					this.SendPropertyChanged("us_firstname");
+					this.Onus_firstnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_us_lastname", DbType="NVarChar(60)")]
+		public string us_lastname
+		{
+			get
+			{
+				return this._us_lastname;
+			}
+			set
+			{
+				if ((this._us_lastname != value))
+				{
+					this.Onus_lastnameChanging(value);
+					this.SendPropertyChanging();
+					this._us_lastname = value;
+					this.SendPropertyChanged("us_lastname");
+					this.Onus_lastnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_us_email", DbType="NVarChar(120)")]
+		public string us_email
+		{
+			get
+			{
+				return this._us_email;
+			}
+			set
+			{
+				if ((this._us_email != value))
+				{
+					this.Onus_emailChanging(value);
+					this.SendPropertyChanging();
+					this._us_email = value;
+					this.SendPropertyChanged("us_email");
+					this.Onus_emailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_us_isadmin", DbType="Int NOT NULL")]
+		public int us_isadmin
+		{
+			get
+			{
+				return this._us_isadmin;
+			}
+			set
+			{
+				if ((this._us_isadmin != value))
+				{
+					this.Onus_isadminChanging(value);
+					this.SendPropertyChanging();
+					this._us_isadmin = value;
+					this.SendPropertyChanged("us_isadmin");
+					this.Onus_isadminChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_us_isactive", DbType="Int NOT NULL")]
+		public int us_isactive
+		{
+			get
+			{
+				return this._us_isactive;
+			}
+			set
+			{
+				if ((this._us_isactive != value))
+				{
+					this.Onus_isactiveChanging(value);
+					this.SendPropertyChanging();
+					this._us_isactive = value;
+					this.SendPropertyChanged("us_isactive");
+					this.Onus_isactiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_us_createdon", DbType="DateTime NOT NULL")]
+		public System.DateTime us_createdon
+		{
+			get
+			{
+				return this._us_createdon;
+			}
+			set
+			{
+				if ((this._us_createdon != value))
+				{
+					this.Onus_createdonChanging(value);
+					this.SendPropertyChanging();
+					this._us_createdon = value;
+					this.SendPropertyChanged("us_createdon");
+					this.Onus_createdonChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Project_User_Junc")]
+	public partial class Project_User_Junc : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _pu_id;
+		
+		private int _pu_projectId;
+		
+		private int _pu_userId;
+		
+		private int _pu_isadmin;
+		
+		private int _pu_isactive;
+		
+		private System.DateTime _pu_createdon;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onpu_idChanging(int value);
+    partial void Onpu_idChanged();
+    partial void Onpu_projectIdChanging(int value);
+    partial void Onpu_projectIdChanged();
+    partial void Onpu_userIdChanging(int value);
+    partial void Onpu_userIdChanged();
+    partial void Onpu_isadminChanging(int value);
+    partial void Onpu_isadminChanged();
+    partial void Onpu_isactiveChanging(int value);
+    partial void Onpu_isactiveChanged();
+    partial void Onpu_createdonChanging(System.DateTime value);
+    partial void Onpu_createdonChanged();
+    #endregion
+		
+		public Project_User_Junc()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pu_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int pu_id
+		{
+			get
+			{
+				return this._pu_id;
+			}
+			set
+			{
+				if ((this._pu_id != value))
+				{
+					this.Onpu_idChanging(value);
+					this.SendPropertyChanging();
+					this._pu_id = value;
+					this.SendPropertyChanged("pu_id");
+					this.Onpu_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pu_projectId", DbType="Int NOT NULL")]
+		public int pu_projectId
+		{
+			get
+			{
+				return this._pu_projectId;
+			}
+			set
+			{
+				if ((this._pu_projectId != value))
+				{
+					this.Onpu_projectIdChanging(value);
+					this.SendPropertyChanging();
+					this._pu_projectId = value;
+					this.SendPropertyChanged("pu_projectId");
+					this.Onpu_projectIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pu_userId", DbType="Int NOT NULL")]
+		public int pu_userId
+		{
+			get
+			{
+				return this._pu_userId;
+			}
+			set
+			{
+				if ((this._pu_userId != value))
+				{
+					this.Onpu_userIdChanging(value);
+					this.SendPropertyChanging();
+					this._pu_userId = value;
+					this.SendPropertyChanged("pu_userId");
+					this.Onpu_userIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pu_isadmin", DbType="Int NOT NULL")]
+		public int pu_isadmin
+		{
+			get
+			{
+				return this._pu_isadmin;
+			}
+			set
+			{
+				if ((this._pu_isadmin != value))
+				{
+					this.Onpu_isadminChanging(value);
+					this.SendPropertyChanging();
+					this._pu_isadmin = value;
+					this.SendPropertyChanged("pu_isadmin");
+					this.Onpu_isadminChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pu_isactive", DbType="Int NOT NULL")]
+		public int pu_isactive
+		{
+			get
+			{
+				return this._pu_isactive;
+			}
+			set
+			{
+				if ((this._pu_isactive != value))
+				{
+					this.Onpu_isactiveChanging(value);
+					this.SendPropertyChanging();
+					this._pu_isactive = value;
+					this.SendPropertyChanged("pu_isactive");
+					this.Onpu_isactiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pu_createdon", DbType="DateTime NOT NULL")]
+		public System.DateTime pu_createdon
+		{
+			get
+			{
+				return this._pu_createdon;
+			}
+			set
+			{
+				if ((this._pu_createdon != value))
+				{
+					this.Onpu_createdonChanging(value);
+					this.SendPropertyChanging();
+					this._pu_createdon = value;
+					this.SendPropertyChanged("pu_createdon");
+					this.Onpu_createdonChanged();
 				}
 			}
 		}
