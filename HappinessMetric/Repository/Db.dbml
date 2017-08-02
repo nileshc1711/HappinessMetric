@@ -13,4 +13,45 @@
       <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Project_Sprint_Details" Member="Project_Sprint_Details">
+    <Type Name="Project_Sprint_Detail">
+      <Column Name="ps_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ps_projectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ps_sprintNo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ps_sprintStartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ps_sprintDays" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Projects" Member="Projects">
+    <Type Name="Project">
+      <Column Name="pj_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pj_name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="pj_description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="pj_parent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="pj_isactive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pj_createdon" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="us_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="us_username" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="us_firstname" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="us_lastname" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="us_email" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="us_isadmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="us_isactive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="us_createdon" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Project_User_Junc" Member="Project_User_Juncs">
+    <Type Name="Project_User_Junc">
+      <Column Name="pu_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pu_projectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pu_userId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pu_isadmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pu_isactive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pu_createdon" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>
