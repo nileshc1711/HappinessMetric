@@ -7,7 +7,7 @@
 }
 
 h3, h4, h5 {
-    margin: 10px 0 30px 0;
+    margin: 10px 0 20px 0;
     letter-spacing: 5px;
     font-size: 20px;
     color: #FFF;
@@ -179,8 +179,10 @@ textarea {
     resize: none;
 }
 
-.container-fluid h3 {
+.container-fluid h1 {
     font-family: 'Lobster', Georgia, Times, serif;
+        margin-top: 5px;
+        color: white !important;
 }
 
 .userrpeort {
@@ -196,5 +198,16 @@ li.tabactive p {
 }
 
 .smallfont {
-    font-size: small;
+    font-size:20px;
+}
+
+.margintop {
+    margin-top:1% !important;
+}
+
+#userreporttable td.ellipsis {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
