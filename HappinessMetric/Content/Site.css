@@ -116,7 +116,8 @@ h1 h2 h3 h4 h5 h6 {
 .navbar {
     font-family: "My New Body Font", Arial, sans-serif;
     margin-bottom: 0;
-    background-color: #368EE0;
+    background-color: #368EE0 !important;
+    border-color: #e7e7e7 !important;
     border: 0;
     font-size: 11px !important;
     letter-spacing: 1px;
@@ -181,8 +182,8 @@ textarea {
 
 .container-fluid h1 {
     font-family: 'Lobster', Georgia, Times, serif;
-        margin-top: 5px;
-        color: white !important;
+    margin-top: 5px;
+    color: white !important;
 }
 
 .userrpeort {
@@ -198,11 +199,11 @@ li.tabactive p {
 }
 
 .smallfont {
-    font-size:20px;
+    font-size: 15px;
 }
 
 .margintop {
-    margin-top:1% !important;
+    margin-top: 1% !important;
 }
 
 #userreporttable td.ellipsis {
@@ -211,3 +212,4 @@ li.tabactive p {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
