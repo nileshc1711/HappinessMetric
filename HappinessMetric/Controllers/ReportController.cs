@@ -11,7 +11,7 @@ namespace HappinessMetric.Controllers
     {
         //
         // GET: /Report/
-
+        //[Authorize]
         public ActionResult UserReport()
         {
             var _HappinessRating = Repository.DatabaseHelper.GetAllRatingDetails();
