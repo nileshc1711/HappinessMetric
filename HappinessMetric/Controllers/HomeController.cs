@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using HappinessMetric.Utilities;
 
 namespace HappinessMetric.Controllers
 {
@@ -14,6 +15,9 @@ namespace HappinessMetric.Controllers
             var userViewModel = new UserViewModel();
             userViewModel.LanID = Request.LogonUserIdentity.Name;
             userViewModel.isValid = Repository.DatabaseHelper.AuthenticateUser(userViewModel.UserName);
+           // userViewModel.CurrentSprint = Repository.DatabaseHelper.GetSprintNo(userViewModel.UserName);
+           userViewModel.CurrentSprint = SprintCalculator.GetSprintNo(userViewModel.UserName);
+           userViewModel.LastThreeSprints = SprintCalculator.GetLast3SprintNo(userViewModel.CurrentSprint);
             return View(userViewModel);
         }
 
