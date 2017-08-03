@@ -3,40 +3,22 @@
     ViewBag.Title = "Happiness Metric";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/Scripts/jquery.toast.js"></script>
-<script src="~/Scripts/alert.js"></script>
 <form class="container" id="homehappiness">
-   @*<div class="row">
-        <div class="col-sm-12" style="margin-top:2%">
-        <div class="col-sm-10">
-            
-        </div>
-        <div class="col-sm-1" style="margin-top: 1%;">
-            <label>Sprint</label>
-        </div>
-        <div class="col-sm-1" style="margin-top: 6px;">
-           
-            @Html.DropDownList("ddlsprint", Model.LastThreeSprints.Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }),new { @class="form-control" })
-        </div>
-            </div>
-    </div>*@
     <div class="row">
-          <div class="col-sm-12" style="margin-top:2%">
-        <div class="col-sm-9"></div>
-        <div class="col-sm-1" style="margin-top: 1%;margin-left:78%">
-            <label>Sprint:</label>
-        </div>
-        <div class="col-sm-1" style="margin-top: 6px;">
-            @*<select style="border-color:red" id="ddlsprint" class="form-control">
-            </select>*@
-            @Html.DropDownList("ddlsprint", Model.LastThreeSprints.Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }),new { @class="form-control" })
-        </div>
+        <div class="col-sm-12" style="margin-top: 2%">
+            <div class="col-sm-9"></div>
+            <div class="col-sm-1" style="margin-top: 1%; margin-left: 78%">
+                <label>Sprint:</label>
             </div>
-        <div class="col-sm-12" style="margin-top:2%">
+            <div class="col-sm-1" style="margin-top: 6px;">
+                @Html.DropDownList("ddlsprint", Model.LastThreeSprints.Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-12" style="margin-top: 2%">
             <div class="col-sm-4">
                 <label>How happy are you with your team?</label><span style="color: red;">*</span>
             </div>
-            <div class="col-sm-8" style="padding:0%">
+            <div class="col-sm-8" style="padding: 0%">
                 <div class="col-sm-2">
                     <p class="radio-inline">
                         <input type="radio" name="Rating" value="5" />Very Happy
@@ -65,25 +47,25 @@
                 <br />
             </div>
         </div>
-        <div class="col-sm-12" style="margin-top:1%">
+        <div class="col-sm-12" style="margin-top: 1%">
             <div class="col-sm-4" style="margin-top: 30px;">
                 <label>What feels best right now?</label><span style="color: red;">*</span>
             </div>
-            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("BestFeel", null, new { @class = "clrVal col-sm-11", @id = "txtBestFeel",@rows=4 })</div>
+            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("BestFeel", null, new { @class = "clrVal col-sm-11", @id = "txtBestFeel", @rows = 4 })</div>
             <br />
         </div>
-        <div class="col-sm-12" style="margin-top:1%">
+        <div class="col-sm-12" style="margin-top: 1%">
             <div class="col-sm-4" style="margin-top: 30px;">
                 <label>What feels worst right now?</label><span style="color: red;">*</span>
             </div>
-            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("WorstFeel", null, new { @class = "clrVal col-sm-11", @id = "txtWorstFeel",@rows=4 })</div>
+            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("WorstFeel", null, new { @class = "clrVal col-sm-11", @id = "txtWorstFeel", @rows = 4 })</div>
             <br />
         </div>
-        <div class="col-sm-12" style="margin-top:1%">
+        <div class="col-sm-12" style="margin-top: 1%">
             <div class="col-sm-4" style="margin-top: 30px;">
                 <label>What would increase your happiness index?</label><span style="color: red;">*</span>
             </div>
-            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("IncreaseHappiness", null, new { @class = "clrVal col-sm-11", @id = "txtIncreaseHappiness",@rows=4 })</div>
+            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("IncreaseHappiness", null, new { @class = "clrVal col-sm-11", @id = "txtIncreaseHappiness", @rows = 4 })</div>
         </div>
     </div>
     <br />
@@ -91,8 +73,8 @@
         <div class="col-sm-9">
         </div>
         <div class="col-sm-3">
-            <input type="button" value="SUBMIT" id="btnSubmit" name="submit" class="btn btn-primary"/>
-            <input type="reset" value="CLEAR" id="btnClear" name="Clear" class="btn btn-info"/>
+            <input type="button" value="SUBMIT" id="btnSubmit" name="submit" class="btn btn-primary" />
+            <input type="reset" value="CLEAR" id="btnClear" name="Clear" class="btn btn-info" />
         </div>
     </div>
 </form>
@@ -140,7 +122,7 @@
                                             }
                                         });
         });
-        
+
 
     });
 
