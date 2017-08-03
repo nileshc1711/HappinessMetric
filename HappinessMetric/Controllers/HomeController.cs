@@ -10,14 +10,13 @@ namespace HappinessMetric.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {
-            var userViewModel = new UserViewModel
-            {
-                LanID = Request.LogonUserIdentity.Name
-            };
-
+        {            
+            var userViewModel = new UserViewModel();
+            userViewModel.LanID = Request.LogonUserIdentity.Name;
+            userViewModel.isValid = Repository.DatabaseHelper.AuthenticateUser(userViewModel.UserName);
             return View(userViewModel);
         }
+
 
         [HttpPost]
         public ActionResult Index(Repository.HappinessRating SubmittedRating)

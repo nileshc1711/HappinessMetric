@@ -37,5 +37,16 @@ namespace HappinessMetric.Repository
             }
         }
 
+        public static bool AuthenticateUser(string username)
+        {
+            var isValid = false;
+            using (var _context = new DbDataContext())
+            {
+                isValid = _context.Users.Any(x => x.us_username.Equals(username) && x.us_isactive == 1);
+            }
+            return isValid;
+        }
+
+
     }
 }
