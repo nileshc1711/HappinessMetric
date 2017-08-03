@@ -46,6 +46,28 @@ namespace HappinessMetric.Repository
             }
             return isValid;
         }
+        public static Project_Sprint_Detail GetSprintNo(string username)
+        {
+                     
+            using (var _context = new DbDataContext())
+            {
+                var sprintDetails = new Project_Sprint_Detail();
+                var  projIDs = (from US in _context.Users
+                             join PU in _context.Project_User_Juncs on US.us_id equals PU.pu_userId
+                             join PJ in _context.Projects on PU.pu_projectId equals PJ.pj_id
+                             where (US.us_username == username)
+                             select new {                             
+                                 projID = PJ.pj_parent == 0 ? PJ.pj_id : PJ.pj_parent
+                             }).SingleOrDefault();
+
+                sprintDetails = (from PSD in _context.Project_Sprint_Details
+                                 where (PSD.ps_projectId == projIDs.projID)
+                                 select PSD).SingleOrDefault();
+                 return sprintDetails;
+                           
+            }
+           
+        }
 
 
     }

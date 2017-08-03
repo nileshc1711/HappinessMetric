@@ -16,21 +16,22 @@ namespace HappinessMetric.Models
                 return LanID.Substring(LanID.IndexOf('\\') + 1);
             }
         }
-        public int CurrentSprint
-        {
-            get
-            {
-                return Utilities.SprintCalculator.GetCurrentSprint;
-            }
-        }
-
-        public IEnumerable<int> LastThreeSprints
-        {
-            get
-            {
-                return Utilities.SprintCalculator.GetTotalSprintsTillDate(DateTime.Now);
-            }
-        }
+        //public int CurrentSprint
+        //{
+        //    get
+        //    {
+        //        return Utilities.SprintCalculator.GetCurrentSprint;
+        //    }
+        //}
+        public int CurrentSprint { get; set; }
+        //public IEnumerable<int> LastThreeSprints
+        //{
+        //    get
+        //    {
+        //        return Utilities.SprintCalculator.GetTotalSprintsTillDate(DateTime.Now);
+        //    }
+        //}
+        public IEnumerable<int> LastThreeSprints { get; set; }
         public IEnumerable<string> Projects {
             get
             {
