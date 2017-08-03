@@ -44,6 +44,7 @@ namespace HappinessMetric.Models
                 return System.Configuration.ConfigurationManager.AppSettings.Get("AdminRole").Contains(UserName);
             }
         }
+        public bool isValid { get; set; }
         
     }
 }

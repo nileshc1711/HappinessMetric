@@ -4,79 +4,89 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <form class="container" id="homehappiness">
-    <div class="row">
-        <div class="col-sm-12" style="margin-top: 2%">
-            <div class="col-sm-9"></div>
-            <div class="col-sm-1" style="margin-top: 1%; margin-left: 78%">
-                <label>Sprint:</label>
+    @if (Model.isValid)
+    {
+        <div class="row">
+            <div class="col-sm-12" style="margin-top: 2%">
+                <div class="col-sm-9"></div>
+                <div class="col-sm-1" style="margin-top: 1%; margin-left: 78%">
+                    <label>Sprint:</label>
+                </div>
+                <div class="col-sm-1" style="margin-top: 6px;">
+                    @Html.DropDownList("ddlsprint", Model.LastThreeSprints.Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }), new { @class = "form-control" })
+                </div>
             </div>
-            <div class="col-sm-1" style="margin-top: 6px;">
-                @Html.DropDownList("ddlsprint", Model.LastThreeSprints.Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }), new { @class = "form-control" })
+            <div class="col-sm-12" style="margin-top: 2%">
+                <div class="col-sm-4">
+                    <label>How happy are you with your team?</label><span style="color: red;">*</span>
+                </div>
+                <div class="col-sm-8" style="padding: 0%">
+                    <div class="col-sm-2">
+                        <p class="radio-inline">
+                            <input type="radio" name="Rating" value="5" />Very Happy
+                        </p>
+                    </div>
+                    <div class="col-sm-2">
+                        <p class="radio-inline">
+                            <input type="radio" name="Rating" value="4" />Happy
+                        </p>
+                    </div>
+                    <div class="col-sm-2">
+                        <p class="radio-inline">
+                            <input type="radio" name="Rating" value="3" />Satisfactory
+                        </p>
+                    </div>
+                    <div class="col-sm-2">
+                        <p class="radio-inline">
+                            <input type="radio" name="Rating" value="2" />UnHappy
+                        </p>
+                    </div>
+                    <div class="col-sm-3">
+                        <p class="radio-inline">
+                            <input type="radio" name="Rating" value="1" />Very UnHappy
+                        </p>
+                    </div>
+                    <br />
+                </div>
             </div>
-        </div>
-        <div class="col-sm-12" style="margin-top: 2%">
-            <div class="col-sm-4">
-                <label>How happy are you with your team?</label><span style="color: red;">*</span>
-            </div>
-            <div class="col-sm-8" style="padding: 0%">
-                <div class="col-sm-2">
-                    <p class="radio-inline">
-                        <input type="radio" name="Rating" value="5" />Very Happy
-                    </p>
+            <div class="col-sm-12" style="margin-top: 1%">
+                <div class="col-sm-4" style="margin-top: 30px;">
+                    <label>What feels best right now?</label><span style="color: red;">*</span>
                 </div>
-                <div class="col-sm-2">
-                    <p class="radio-inline">
-                        <input type="radio" name="Rating" value="4" />Happy
-                    </p>
-                </div>
-                <div class="col-sm-2">
-                    <p class="radio-inline">
-                        <input type="radio" name="Rating" value="3" />Satisfactory
-                    </p>
-                </div>
-                <div class="col-sm-2">
-                    <p class="radio-inline">
-                        <input type="radio" name="Rating" value="2" />UnHappy
-                    </p>
-                </div>
-                <div class="col-sm-3">
-                    <p class="radio-inline">
-                        <input type="radio" name="Rating" value="1" />Very UnHappy
-                    </p>
-                </div>
+                <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("BestFeel", null, new { @class = "clrVal col-sm-11", @id = "txtBestFeel", @rows = 4 })</div>
                 <br />
             </div>
-        </div>
-        <div class="col-sm-12" style="margin-top: 1%">
-            <div class="col-sm-4" style="margin-top: 30px;">
-                <label>What feels best right now?</label><span style="color: red;">*</span>
+            <div class="col-sm-12" style="margin-top: 1%">
+                <div class="col-sm-4" style="margin-top: 30px;">
+                    <label>What feels worst right now?</label><span style="color: red;">*</span>
+                </div>
+                <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("WorstFeel", null, new { @class = "clrVal col-sm-11", @id = "txtWorstFeel", @rows = 4 })</div>
+                <br />
             </div>
-            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("BestFeel", null, new { @class = "clrVal col-sm-11", @id = "txtBestFeel", @rows = 4 })</div>
-            <br />
-        </div>
-        <div class="col-sm-12" style="margin-top: 1%">
-            <div class="col-sm-4" style="margin-top: 30px;">
-                <label>What feels worst right now?</label><span style="color: red;">*</span>
+            <div class="col-sm-12" style="margin-top: 1%">
+                <div class="col-sm-4" style="margin-top: 30px;">
+                    <label>What would increase your happiness index?</label><span style="color: red;">*</span>
+                </div>
+                <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("IncreaseHappiness", null, new { @class = "clrVal col-sm-11", @id = "txtIncreaseHappiness", @rows = 4 })</div>
             </div>
-            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("WorstFeel", null, new { @class = "clrVal col-sm-11", @id = "txtWorstFeel", @rows = 4 })</div>
-            <br />
         </div>
-        <div class="col-sm-12" style="margin-top: 1%">
-            <div class="col-sm-4" style="margin-top: 30px;">
-                <label>What would increase your happiness index?</label><span style="color: red;">*</span>
+        <br />
+        <div class="col-sm-12">
+            <div class="col-sm-9">
             </div>
-            <div class="col-sm-8" style="margin-top: 3px !important;">@Html.TextArea("IncreaseHappiness", null, new { @class = "clrVal col-sm-11", @id = "txtIncreaseHappiness", @rows = 4 })</div>
+            <div class="col-sm-3">
+                <input type="button" value="SUBMIT" id="btnSubmit" name="submit" class="btn btn-primary" />
+                <input type="reset" value="CLEAR" id="btnClear" name="Clear" class="btn btn-info" />
+            </div>
         </div>
-    </div>
-    <br />
-    <div class="col-sm-12">
-        <div class="col-sm-9">
+    }
+    else
+    {
+        <div class="row">
+            <h2>Oops!!! You are not authorized User.</h2>
         </div>
-        <div class="col-sm-3">
-            <input type="button" value="SUBMIT" id="btnSubmit" name="submit" class="btn btn-primary" />
-            <input type="reset" value="CLEAR" id="btnClear" name="Clear" class="btn btn-info" />
-        </div>
-    </div>
+    }
+
 </form>
 <script type="text/javascript">
     $(function () {
