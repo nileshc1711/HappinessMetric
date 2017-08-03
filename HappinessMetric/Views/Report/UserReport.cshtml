@@ -58,6 +58,7 @@
     $(document).ready(function () {
         $("#userreporttable td.ellipsis").hover(function () {
             $(this).prop('title', $.trim($(this).text()));
+            $(this).css('cursor', 'pointer');
         });
         var buttonCommon = {
             exportOptions: {
