@@ -21,7 +21,6 @@
             <h4 class="userrpeort">Rating Report</h4>
         </div>
     </div>
-
     <table id="userreporttable" class="table table-striped table-bordered nowrap">
         <thead>
             <tr>
@@ -50,6 +49,11 @@
                 </tr>
             }
         </tbody>
+        <tfoot style="display: none;">
+            <tr>
+                <th>Project</th>
+            </tr>
+        </tfoot>
     </table>
 
 </form>
@@ -70,7 +74,7 @@
                 }
             }
         };
-        $('#userreporttable').DataTable({
+        var table = $('#userreporttable').DataTable({
             "scrollX": true,
             "pageLength": 10,
             "bAutoWidth": false,
@@ -80,7 +84,45 @@
              $.extend(true, {}, buttonCommon, {
                  extend: 'excelHtml5'
              })
-            ]
+            ],
+            "initComplete": function () {
+                $("#userreporttable_filter").append("<label style='margin-left: 6px;'>Project : <label><div id='projectlist'></div>");
+            }
         });
+
+        $("#userreporttable tfoot th").each(function (i) {
+            if ($(this).text() == 'Project') {
+                var isStatusColumn = (($(this).text() == 'Status') ? true : false);
+                var select = $('<select class="form-control"><option value="">All</option></select>')
+                    .appendTo($(this).empty())
+                    .on('change', function () {
+                        var val = $(this).val();
+                        table.column(i)
+                                                    .search(val ? '^' + $(this).val() + '$' : val, true, false)
+                                                    .draw();
+                    });
+                $("#projectlist").html(select.prevObject[0]);
+                if (isStatusColumn) {
+                    var statusItems = [];
+                    table.column(i).nodes().to$().each(function (d, j) {
+                        var thisStatus = $(j).attr("data-filter");
+                        if ($.inArray(thisStatus, statusItems) === -1) statusItems.push(thisStatus);
+                    });
+                    statusItems.sort();
+                    $.each(statusItems, function (i, item) {
+                        select.append('<option value="' + item + '">' + item + '</option>');
+                    });
+
+                }
+                else {
+                    table.column(i).data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>');
+                    });
+                }
+            }
+        });
+
     });
+
+
 </script>
