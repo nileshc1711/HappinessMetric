@@ -11,11 +11,21 @@ namespace HappinessMetric.Controllers
     {
         //
         // GET: /Report/
-        //[Authorize]
+
         public ActionResult UserReport()
         {
-            var _HappinessRating = Repository.DatabaseHelper.GetAllRatingDetails();
-            return View(_HappinessRating);
+            var userViewModel = new UserViewModel();
+            userViewModel.LanID = Request.LogonUserIdentity.Name;
+            userViewModel.isValid = Repository.DatabaseHelper.AuthenticateUser(userViewModel.UserName);
+            if (userViewModel.isValid && userViewModel.IsAdmin)
+            {
+                var _HappinessRating = Repository.DatabaseHelper.GetAllRatingDetails();
+                return View(_HappinessRating);
+            }
+            else
+            {
+                return View("ErrorPage");
+            }
         }
 
 
