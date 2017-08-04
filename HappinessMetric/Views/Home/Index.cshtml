@@ -1,11 +1,11 @@
 ﻿@model HappinessMetric.Models.UserViewModel
 @{
-    ViewBag.Title = "Happiness Metric";
+    ViewBag.Title = "Happiness Survey";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <form class="container" id="homehappiness">
-    @if (Model.isValid)
-    {
+    @*@if (Model.isValid)
+    {*@
         <div class="row">
             <div class="col-sm-12" style="margin-top: 2%">
                 <div class="col-sm-9"></div>
@@ -79,13 +79,13 @@
                 <input type="reset" value="CLEAR" id="btnClear" name="Clear" class="btn btn-info" />
             </div>
         </div>
-    }
+    @*}
     else
     {
         <div class="row">
             <h2>Oops!!! You are not authorized User.</h2>
         </div>
-    }
+    }*@
 
 </form>
 <script type="text/javascript">
@@ -112,7 +112,7 @@
             }
 
             var data = {
-                Project: '@Model.Projects.First()',
+                Project: '@Model.Projects.First().pj_name',
                 Sprint: parseInt($.trim($('#ddlsprint').val())),
                 Developer: '@Model.UserName',
                 HappyRatingwithTeam: $('input[name="Rating"]:checked').val(),

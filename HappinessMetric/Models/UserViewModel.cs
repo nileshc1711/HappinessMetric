@@ -24,6 +24,10 @@ namespace HappinessMetric.Models
         //    }
         //}
         public int CurrentSprint { get; set; }
+        public IEnumerable<int> LastThreeSprints { get; set; }
+        public IEnumerable<Repository.Project> Projects { get; set; }
+        public bool IsAdmin { get; set; }
+        public bool isValid { get; set; }
         //public IEnumerable<int> LastThreeSprints
         //{
         //    get
@@ -31,21 +35,7 @@ namespace HappinessMetric.Models
         //        return Utilities.SprintCalculator.GetTotalSprintsTillDate(DateTime.Now);
         //    }
         //}
-        public IEnumerable<int> LastThreeSprints { get; set; }
-        public IEnumerable<string> Projects {
-            get
-            {
-                return new string[] { "MedClarity" };
-            }
-        }
-        public bool IsAdmin
-        {
-            get
-            {
-                return System.Configuration.ConfigurationManager.AppSettings.Get("AdminRole").Contains(UserName);
-            }
-        }
-        public bool isValid { get; set; }
-        
+
+
     }
 }
