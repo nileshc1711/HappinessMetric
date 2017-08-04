@@ -46,6 +46,17 @@ namespace HappinessMetric.Repository
             }
             return isValid;
         }
+
+        public static bool IsUserAdmin(string userName)
+        {
+            using (var _context = new DbDataContext())
+            {
+                var user = _context.Users.FirstOrDefault(x => x.us_username.Equals(userName.Trim()));
+                return user?.us_isadmin == 1 ? true : false;
+            }
+            
+        }
+
         public static Project_Sprint_Detail GetSprintNo(string username)
         {
                      
@@ -67,6 +78,19 @@ namespace HappinessMetric.Repository
                            
             }
            
+        }
+
+        public static IEnumerable<Project> GetUserProject(string userName)
+        {
+            using (var _context = new DbDataContext())
+            {
+                var result = (from p in _context.Projects
+                             join pu in _context.Project_User_Juncs on p.pj_id equals pu.pu_projectId
+                             join u in _context.Users.Where(u => u.us_username.Equals(userName.Trim())) on pu.pu_userId equals u.us_id
+                             select p);
+                return result.ToList();
+            }
+            
         }
 
 
