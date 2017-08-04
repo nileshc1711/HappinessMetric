@@ -1,6 +1,6 @@
 ﻿@model HappinessMetric.Models.UserViewModel
 @{
-    ViewBag.Title = "Happiness Metric";
+    ViewBag.Title = "Happiness Survey";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <form class="container" id="homehappiness">
@@ -112,7 +112,7 @@
             }
 
             var data = {
-                Project: '@Model.Projects.First()',
+                Project: '@Model.Projects.First().pj_name',
                 Sprint: parseInt($.trim($('#ddlsprint').val())),
                 Developer: '@Model.UserName',
                 HappyRatingwithTeam: $('input[name="Rating"]:checked').val(),

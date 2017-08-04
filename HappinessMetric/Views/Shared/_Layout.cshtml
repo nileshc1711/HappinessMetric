@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Happiness Metric</title>
+    <title>Happiness Survey</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
       <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
@@ -18,8 +18,9 @@
     @{
         var userModel = new HappinessMetric.Models.UserViewModel
         {
-            LanID = Request.LogonUserIdentity.Name
-        };       
+            LanID = Request.LogonUserIdentity.Name,
+        };
+        userModel.IsAdmin = HappinessMetric.Repository.DatabaseHelper.IsUserAdmin(userModel.UserName);
     }
     <script>
         $(function () {
@@ -52,11 +53,11 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        @*@if (userModel.IsAdmin)
-                        {*@
-                        <li class="tabactive"><a href="~/Home/Index"><p>Home</p></a></li>
+                        @if (userModel.IsAdmin)
+                        {
+                            <li class="tabactive"><a href="~/Home/Index"><p>Home</p></a></li>
                             <li class="tabactive"><a href="~/Report/UserReport"><p>Report</p></a></li>
-                        @*}*@
+                        }
                         <li><a class="smallfont" href="#">Welcome <span class="smallfont">@userModel.UserName</span></a></li>
                     </ul>
                 </div>
