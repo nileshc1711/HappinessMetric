@@ -252,6 +252,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\happiness_emoji.png" />
     <Content Include="Images\Medusind.png" />
     <Content Include="Repository\Db.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
