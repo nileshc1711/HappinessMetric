@@ -18,9 +18,9 @@ namespace HappinessMetric.Controllers
             if (userViewModel.isValid)
             {
                 userViewModel.CurrentSprint = SprintCalculator.GetSprintNo(userViewModel.UserName);
-                userViewModel.LastThreeSprints = SprintCalculator.GetLast3SprintNo(userViewModel.CurrentSprint);
-                userViewModel.Projects = Repository.DatabaseHelper.GetUserProject(userViewModel.UserName);            
+                userViewModel.LastThreeSprints = SprintCalculator.GetLast3SprintNo(userViewModel.CurrentSprint);                           
             }
+            userViewModel.Projects = Repository.DatabaseHelper.GetUserProject(userViewModel.UserName); 
            
             return View(userViewModel);
         }

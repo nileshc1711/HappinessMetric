@@ -12,6 +12,8 @@
                 <div class="col-sm-1" style="margin-top: 1%; margin-left: 78%">
                     <label>Sprint:</label>
                 </div>
+                <input type="hidden" id="hdnprojectname" value='@Model.Projects.First().pj_name' />
+                <input type="hidden" id="hdnisactive" value='@Model.isValid' />
                 <div class="col-sm-1" style="margin-top: 6px;">
                     @Html.DropDownList("ddlsprint", Model.LastThreeSprints.Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }), new { @class = "form-control" })
                 </div>
@@ -110,9 +112,12 @@
                 $("#txtIncreaseHappiness").focus();
                 return false;
             }
-
+            var ProjectName = "";
+            if ($("#hdnisactive").val()) {
+                ProjectName = $("#hdnprojectname").val();
+            }
             var data = {
-                Project: '@Model.Projects.First().pj_name',
+                Project: ProjectName,
                 Sprint: parseInt($.trim($('#ddlsprint').val())),
                 Developer: '@Model.UserName',
                 HappyRatingwithTeam: $('input[name="Rating"]:checked').val(),
@@ -120,6 +125,7 @@
                 FeelsWorst: $.trim($("#txtWorstFeel").val()),
                 IncreaseHappiness: $.trim($("#txtIncreaseHappiness").val())
             };
+
             $.post("/Home/Index", data)
                                         .done(function (data) {
                                             if (data.HasUserSubmittedForCurrentSprint) {
@@ -131,9 +137,8 @@
                                                 $("#btnClear").click();
                                             }
                                         });
+
         });
-
-
     });
 
 </script>
